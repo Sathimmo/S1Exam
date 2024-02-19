@@ -4,24 +4,46 @@ public class NumberInput {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt the user to enter the number of elements
-        System.out.print("Enter the number of elements: ");
-        int n = scanner.nextInt();
-        
-        // Create an array to store the numbers
-        int[] numbers = new int[n];
+        int[] numbers = new int[100]; // Assuming a maximum of 100 elements
+        int n = 0; // Number of elements entered by the user
 
-        // Input the numbers
-        System.out.print("Enter the numbers:");
-        for (int i = 0; i < n; i++) {
-            System.out.print("Enter the numbers:");
-            numbers[i] = scanner.nextInt();
-        }
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Input");
+            System.out.println("2. View");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
 
-        // Display the input numbers
-        System.out.println("Input numbers:");
-        for (int i = 0; i < n; i++) {
-            System.out.print(numbers[i] + " ");
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the number of elements: ");
+                    int numElements = scanner.nextInt();
+                    System.out.println("Enter elements:");
+                    for (int i = 0; i < numElements; i++) {
+                        System.out.print("Element " + (i+1) + ": ");
+                        numbers[n++] = scanner.nextInt();
+                    }
+                    break;
+                case 2:
+                    if (n == 0) {
+                        System.out.println("No numbers entered yet.");
+                    } else {
+                        System.out.println("Input numbers:");
+                        for (int i = 0; i < n; i++) {
+                            System.out.print(numbers[i] + " ");
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+                    break;
+            }
         }
 
         scanner.close();
